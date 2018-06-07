@@ -1,0 +1,268 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font: 16px/1.5 'Courier New', 'Times New Roman', 'Microsoft YaHei';
+  -webkit-font-smoothing: antialiased;
+}
+li {
+  list-style: none;
+}
+.ripple {
+  color: #fff;
+  height: 24px;
+  padding: 0 18px;
+  font-size: 12px;
+  overflow: hidden;
+  line-height: 26px;
+  position: relative;
+  border-radius: 12px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  background-color: #0099ff;
+}
+.ripple:focus {
+  outline: none;
+}
+.ripple:after {
+  top: -10px;
+  content: "";
+  opacity: 0;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  display: block;
+  position: absolute;
+  transition: all .3s;
+  pointer-events: none;
+  background-color: aqua;
+  background-position: 50%;
+}
+.ripple:active:after {
+  opacity: .3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0s;
+}
+input {
+  height: 25px;
+  padding: 4px 6px;
+  line-height: 25px;
+  border-radius: 4px;
+  border: 1px solid #0099ff;
+}
+input:focus {
+  outline: none;
+  border-color: aqua;
+}
+a.button {
+  width: 60px;
+  height: 24px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  overflow: hidden;
+  user-select: none;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  border-radius: 12px;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #ff8300;
+}
+a.button:after {
+  top: 0px;
+  opacity: 0;
+  left: -18px;
+  content: "";
+  width: 96px;
+  margin: auto;
+  height: 96px;
+  display: block;
+  background: #09f;
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.8s;
+}
+a.button:active {
+  top: 0;
+  background-color: #ff8300;
+}
+a.button:active:after {
+  width: 0;
+  top: -20px;
+  height: 0;
+  left: 24px;
+  opacity: 1;
+  transition-duration: 0s;
+}
+.category {
+  top: 0;
+  left: 1000px;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+.category.active {
+  left: 0;
+}
+.category .content-wrapper {
+  float: left;
+  width: 800px;
+  height: 100%;
+  padding: 0 20px;
+}
+.category .content-item {
+  display: none;
+}
+.category .content-item.active {
+  display: block;
+}
+.tab-list {
+  float: left;
+  width: 200px;
+  height: 100%;
+  color: #fff;
+  background-color: #414B5B;
+}
+.tab-list .tab-item {
+  height: 30px;
+  cursor: pointer;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 30px;
+  border-bottom: 1px solid #CCC;
+}
+.tab-list .tab-item:last-of-type {
+  border-bottom: none;
+}
+.tab-list .tab-item.active {
+  overflow: hidden;
+  font-weight: 500;
+}
+.tab-list .tab-item.active:after {
+  content: "";
+  width: 10px;
+  float: right;
+  height: 10px;
+  margin-top: 10px;
+  margin-right: -15px;
+  background-color: #fff;
+  transform: rotate(-45deg);
+}
+.content-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.content-wrapper .bg-list {
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.content-wrapper .bg-list .bg-item {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background: url("img/IMG_20180305_144243.jpg") no-repeat fixed center;
+  background-size: contain;
+}
+.header {
+  height: 60px;
+  line-height: 60px;
+  background-color: #414B5B;
+}
+.header .wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+.header .link {
+  color: #fff;
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline-block;
+}
+.header .link.active {
+  font-weight: 500;
+}
+.header .link.active:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  margin: -5px auto 0;
+  background-color: #fff;
+  transform: rotate(-45deg);
+}
+.main {
+  z-index: 1;
+  width: 1000px;
+  overflow: hidden;
+  margin: 20px auto;
+  position: relative;
+  height: calc(100% - 100px);
+}
+#clock {
+  right: 0;
+  top: 63px;
+  z-index: 100;
+  position: absolute;
+}
+#links {
+  overflow: hidden;
+}
+#links .link-item {
+  margin-bottom: 10px;
+}
+#links a {
+  width: 100px;
+  height: 24px;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 26px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  background-color: #0099ff;
+}
+#links a:link,
+#links a:visited,
+#links a:hover,
+#links a:active {
+  color: #fff;
+}
+#links a:hover {
+  font-weight: 500;
+}
+#tools .tool label {
+  display: inline-block;
+  vertical-align: middle;
+}
+#tool-color .ripple {
+  margin-top: -1px;
+}
+#tool-qr-code .ripple {
+  margin-top: -1px;
+}
+#tool-qr-code .qrcode {
+  width: 250px;
+  height: 250px;
+  margin-top: 10px;
+}

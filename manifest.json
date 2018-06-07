@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "ZJDGX Sources",
+  "description": "This extension shows source links for zjdgx.",
+  "icons": {"128": "icon-159.png"},
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "icon-50.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newTab/newtab.html"
+  }
+}

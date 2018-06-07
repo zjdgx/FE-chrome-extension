@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .ripple {
+            position: relative;
+        }
+        .ripple:focus{
+            outline: none;
+        }
+
+        .ripple:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            pointer-events: none;
+            background-color: #333;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            opacity: 0;
+            transition: all .3s;
+        }
+
+        .ripple:active:after {
+            opacity: .3;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: 0s;
+        }
+        .container{
+            padding-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container text-center">
+        <button class="btn btn-default ripple btn-lg">Button</button>
+        <button class="btn btn-default ripple btn-lg">Button with very long content</button>
+    </div>
+</body>
+
+</html>

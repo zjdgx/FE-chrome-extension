@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font: 16px/1.5 'Courier New', 'Times New Roman', 'Microsoft YaHei';
+  -webkit-font-smoothing: antialiased;
+}
+li {
+  list-style: none;
+}
+
+.ripple {
+  color: #fff;
+  height: 24px;
+  padding: 0 18px;
+  font-size: 12px;
+  overflow: hidden;
+  line-height: 26px;
+  position: relative;
+  border-radius: 12px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  background-color: #0099ff;
+}
+.ripple:focus{
+  outline: none;
+}
+.ripple:after {
+  top: -10px;
+  content: "";
+  opacity: 0;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  display: block;
+  position: absolute;
+  transition: all .3s;
+  pointer-events: none;
+  background-color: aqua;
+  background-position: 50%;
+}
+
+.ripple:active:after {
+  opacity: .3;
+  //设置初始状态
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0s;
+}
+
+input {
+  height: 25px;
+  padding: 4px 6px;
+  line-height: 25px;
+  border-radius: 4px;
+  border: 1px solid #0099ff;
+  &:focus {
+    outline: none;
+    border-color: aqua;
+  }
+}
+
+// 水波按钮
+a.button {
+  width: 60px;
+  height: 24px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  overflow: hidden;
+  user-select: none;
+  line-height: 26px;
+  position: relative;
+  text-align: center;
+  border-radius: 12px;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #ff8300;
+  &:after {
+    top: 0px;
+    opacity: 0;
+    left: -18px;
+    content: "";
+    width: 96px;
+    margin: auto;
+    height: 96px;
+    display: block;
+    background: #09f;
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.8s;
+  }
+  &:active {
+    top: 0;
+    background-color: #ff8300;
+  }
+  &:active:after {
+    width: 0;
+    top: -20px;
+    height: 0;
+    left: 24px;
+    opacity: 1;
+    transition-duration: 0s;
+  }
+}
+
+.category {
+  top: 0;
+  left: 1000px;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  &.active {
+    left: 0;
+  }
+  .content-wrapper {
+    float: left;
+    width: 800px;
+    height: 100%;
+    padding: 0 20px;
+  }
+  .content-item {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+// 分类样式
+.tab-list {
+  float: left;
+  width: 200px;
+  height: 100%;
+  color: #fff;
+  background-color: #414B5B;
+  .tab-item {
+    height: 30px;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 30px;
+    border-bottom: 1px solid #CCC;
+    &:last-of-type {
+      border-bottom: none;
+    }
+    &.active {
+      overflow: hidden;
+      font-weight: 500;
+      &:after {
+        content: "";
+        width: 10px;
+        float: right;
+        height: 10px;
+        margin-top: 10px;
+        margin-right: -15px;
+        background-color: #fff;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.content-wrapper {
+  width: 100%;
+  height: 100%;
+}
+// 背景样式
+.content-wrapper .bg-list {
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  .bg-item{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background: url("./img/IMG_20180305_144243.jpg") no-repeat fixed center;
+    background-size: contain;
+  }
+}
+
+// header
+.header {
+  height: 60px;
+  line-height: 60px;
+  background-color: #414B5B;
+  .wrapper {
+    width: 1000px;
+    margin: 0 auto;
+  }
+  .link {
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block;
+    &.active {
+      font-weight: 500;
+      &:after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        display: block;
+        margin: -5px auto 0;
+        background-color: #fff;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.main {
+  z-index: 1;
+  width: 1000px;
+  overflow: hidden;
+  margin: 20px auto;
+  position: relative;
+  height: calc(~'100% - 100px');
+}
+
+// 表
+#clock {
+  right: 0;
+  top: 63px;
+  z-index: 100;
+  position: absolute;
+}
+// 链接tab样式
+#links {
+  overflow: hidden;
+  .link-item {
+    margin-bottom: 10px;
+  }
+  a {
+    width: 100px;
+    height: 24px;
+    color: #fff;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 26px;
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: middle;
+    background-color: #0099ff;
+    &:link, &:visited, &:hover, &:active {
+      color: #fff;
+    }
+    &:hover {
+      font-weight: 500;
+    }
+  }
+}
+
+#tools {
+  .tool {
+    label {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+// 颜色转换
+#tool-color {
+  .ripple {
+    margin-top: -1px;
+  }
+}
+
+// 二维码样式
+#tool-qr-code {
+  .ripple {
+    margin-top: -1px;
+  }
+  .qrcode {
+    width: 250px;
+    height: 250px;
+    margin-top: 10px;
+  }
+}
