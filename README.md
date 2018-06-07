@@ -2,6 +2,8 @@
 
 前端开发chrome插件，欢迎star、PR
 
+![效果图](newTab/img/result.png)
+
 ## 2018/06/07
   1. 修改分类切换样式
   2. clock位置修改
