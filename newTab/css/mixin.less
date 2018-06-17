@@ -1,0 +1,7 @@
+.loopingClass (@n) when (@n > -1) {
+  .bg@{n} {
+    background: url('./img/@{n}.jpg') no-repeat center center;
+    background-size: cover;
+  }
+  .loopingClass(@n - 1);
+}

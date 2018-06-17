@@ -136,6 +136,16 @@ function draw(ctx, size) {
 }
 
 $(() => {
+  new Swiper('.swiper-container', {
+    autoplay: {
+      delay: 5000,
+      stopOnLastSlide: false,
+      disableOnInteraction: true,
+    },//可选选项，自动滑动
+    paginationType: 'fraction',
+    pagination: '.swiper-pagination',
+    autoplayDisableOnInteraction: false
+  });
   draw(ctx, 300);
   // header tab点击事件
   $('.header').on('click', 'span', e => {
