@@ -2,7 +2,7 @@
 
 前端开发chrome插件，欢迎star、PR
 
-![效果图](newTab/img/result.png)
+![效果图](static/img/result.png)
 
 ## 2018/06/17
   1. 增加自动切换背景图
@@ -13,7 +13,7 @@
   2. clock位置修改
 
 ## 2018/06/05
-  1. 添加less支持: `lessc -x newTab.less > newTab.min.css`
+  1. 添加less支持: `lessc -x static/less/newTab.less > static/css/newTab.min.css`
   2. 添加二维码
   3. 添加颜色转换
   4. 整理样式
