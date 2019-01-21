@@ -1,5 +1,5 @@
 demo*
-*.less
+# *.less
 node_modules
 config
 # build.js
