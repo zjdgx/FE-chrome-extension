@@ -1,0 +1,34 @@
+<div id="tools" class="category">
+  <ul class="tab-list">
+    <li class="tab-item active" data-target="#tool-color">颜色转换</li>
+    <li class="tab-item" data-target="#tool-qr-code">二维码</li>
+    <li class="tab-item" data-target="#json-format">JSON转换</li>
+    <li class="tab-item" data-target="#baidu-translate">百度翻译</li>
+  </ul>
+  <div class="content-wrapper">
+    <div class="content-item active" id="tool-color">
+      <h2 class="sub-title">颜色转换</h2>
+      <label>颜色值: <input id="tool-color-value" type="text" placeholder="fff | ffffff | 255,255,255"></label>
+      <a class="ripple" href="javascript:void(0)" id="transform-color">转换</a>
+      <div class="result"></div>
+    </div>
+    <div class="content-item" id="tool-qr-code">
+      <h2 class="sub-title">二维码</h2>
+      <label>URL: <input id="qrcode-url" type="text"></label>
+      <a class="ripple" href="javascript:void(0)" id="qrcode">生成二维码</a>
+      <div class="qrcode"></div>
+    </div>
+    <div class="content-item" id="json-format">
+      <h2 class="sub-title">JSON格式化</h2>
+      <textarea id="json-src" type="text"></textarea>
+      <a class="ripple" href="javascript:void(0)" id="format-json">格式化</a>
+      <textarea class="json-result"></textarea>
+    </div>
+    <div class="content-item" id="baidu-translate">
+      <h2 class="sub-title">百度翻译</h2>
+      <textarea id="translate-text" type="text"></textarea>
+      <p class="translate-result"></p>
+      <a class="ripple" href="javascript:void(0)" id="translate">翻译</a>
+    </div>
+  </div>
+</div>

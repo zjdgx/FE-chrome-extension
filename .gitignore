@@ -1,2 +1,11 @@
 demo*
 *.less
+node_modules
+config
+build.js
+package-lock.json
+src/pages/content/private
+src/pages/content/tab/memo.html
+src/pages/content/categories.html
+src/pages/content/showContent.html
+src/static/js/private

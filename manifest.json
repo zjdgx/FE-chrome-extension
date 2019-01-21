@@ -2,25 +2,34 @@
   "manifest_version": 2,
   "name": "ZJDGX Sources",
   "description": "This extension shows source links for zjdgx.",
-  "icons": {"128": "static/img/icon-159.png"},
+  "icons": {"128": "dist/static/img/icon-159.png"},
   "version": "1.0",
   "browser_action": {
-    "default_icon": "static/img/icon-50.png",
-    "default_popup": "pages/popup.html"
+    "default_icon": "dist/static/img/icon-50.png",
+    "default_popup": "dist/pages/popup.html"
   },
   "permissions": [
     "tabs",
+    "storage",
     "activeTab",
-    "notifications"
+    "notifications",
+    "http://*/*",
+    "https://*/*"
   ],
   "chrome_url_overrides": {
-    "newtab": "pages/newtab.html"
+    "newtab": "dist/pages/newtab.html"
   },
-  "options_page": "pages/options.html",
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "dist/static/js/background.js"
+    ]
+  },
+  "options_page": "dist/pages/options.html",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["static/js/cannot_touch.js"],
+      "js": ["dist/static/js/remove_ads.js"],
       "run_at": "document_end"
     }
   ]

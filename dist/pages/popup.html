@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../static/css/popup.min.css">
+</head>
+<body>
+  <div class="tool-tab">
+    <span class="tool-tab-item tool-tab-item-active qrcode">二维码</span>
+    <!-- <span class="tool-tab-item weather">天气预报</span> -->
+    <span class="tool-tab-item screen-shot">屏幕截图</span>
+    <span class="tool-tab-item color">颜色转换</span>
+    <!-- <span class="tool-tab-item deviceinfos">设备信息</span> -->
+    <span class="tool-tab-item download-files">下载资源</span>
+  </div>
+  <div class="content">
+    <div class="tool-item tool-item-active mod">
+      <div id="qrcode"></div>
+    </div>
+    <div class="tool-item" id="weather"></div>
+    <div class="tool-item" id="color">
+      <label>颜色值: <input id="color-src" type="text" placeholder="fff | ffffff | 255,255,255"></label>
+      <a class="ripple" href="javascript:void(0)" id="transform-color">转换</a>
+      <div id="color-result"></div>
+    </div>
+    <div class="tool-item" id="deviceinfos"></div>
+  </div>
+  <!-- download 2018-07-08 -->
+  <div class="tool-item" id="downloader">
+    <div class="title">
+      <a id="download" href="#"><i class="ico-download"></i>Download</a>
+      <ul class="tabmenu" id="menu">
+        <li><a href="###" class="cur" data-type="scriptbox">Javascript</a></li>
+        <li><a href="###" data-type="linkbox">Style</a></li>
+        <li><a href="###" data-type="imgbox">Images</a></li>
+      </ul>
+    </div>
+    <div class="content" id="content">
+      <ul class="scriptbox" id="scriptbox"></ul>
+      <ul class="linkbox" id="linkbox" style="display:none;"></ul>
+      <ul class="imgbox" id="imgbox" style="display:none;"></ul>
+    </div>
+  </div>
+  <script src="../static/js/jquery-2.2.4.min.js"></script>
+  <script src="../static/js/jquery.qrcode.min.js"></script>
+  <script src="../static/js/popup.js"></script>
+  <script src="../static/js/screenShot.js"></script>
+</body>
+</html>

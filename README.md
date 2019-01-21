@@ -4,6 +4,10 @@
 
 ![效果图](static/img/result.png)
 
+## 2019/01/13
+  1. mac commands
+  2. node build
+
 ## 2018/06/17
   1. 增加自动切换背景图
   2. 修改样式
