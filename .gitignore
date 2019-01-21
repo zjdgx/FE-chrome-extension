@@ -1,7 +1,7 @@
 demo*
 # *.less
 node_modules
-config
+# config
 # build.js
 package-lock.json
 src/pages/content/private
