@@ -2,7 +2,7 @@ demo*
 *.less
 node_modules
 config
-build.js
+# build.js
 package-lock.json
 src/pages/content/private
 src/pages/content/tab/memo.html
