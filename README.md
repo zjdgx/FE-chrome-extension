@@ -2,7 +2,16 @@
 
 前端开发chrome插件，欢迎star、PR
 
-![效果图](static/img/result.png)
+![效果图](dist/static/img/result.png)
+
+## 使用方法:
+  1. `git clone https://github.com/zjdgx/FE-chrome-extension.git`
+  2. `npm install`
+  3. `npm run dev`
+
+## 2019/01/31
+  1. 增加theme
+  2. 增加临时显示背景图: 方便临时学习一些内容, 如Linux命令...
 
 ## 2019/01/13
   1. mac commands

@@ -1,3 +1,53 @@
+.markdown h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.markdown h2 {
+  font-size: 22px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.markdown h3 {
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.markdown h4 {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.markdown h5 {
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.markdown ul {
+  text-indent: 1em;
+}
+.markdown ul ul {
+  text-indent: 2em;
+}
+.sand-beach-theme .bg1 {
+  background: url('../img/theme/sand-beach/1.jpg') no-repeat center center;
+  background-size: 100%;
+}
+.sand-beach-theme .bg2 {
+  background: url('../img/theme/sand-beach/2.jpg') no-repeat center center;
+  background-size: 100%;
+}
+.sand-beach-theme .bg3 {
+  background: url('../img/theme/sand-beach/3.jpg') no-repeat center center;
+  background-size: 100%;
+}
+.sand-beach-theme .bg4 {
+  background: url('../img/theme/sand-beach/4.png') no-repeat center center;
+  background-size: 100%;
+}
+.sand-beach-theme .bg5 {
+  background: url('../img/theme/sand-beach/5.jpg') no-repeat center center;
+  background-size: 100%;
+}
 @keyframes background {
   0% {
     background-position: 0% 50%;
@@ -114,7 +164,7 @@ input:focus {
 .new-tab-content .content-item {
   padding: 10px;
   font-size: 12px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .markdown h2,
 .markdown h3 {
@@ -766,7 +816,7 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #F0F0F0;
+  background: rgba(242, 242, 242, 0.4);
 }
 /* Base color: saturation 0; */
 .hljs,
@@ -895,42 +945,6 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   bottom: 0;
   position: fixed;
 }
-.swiper-container .bg8 {
-  background: url('../img/8.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg7 {
-  background: url('../img/7.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg6 {
-  background: url('../img/6.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg5 {
-  background: url('../img/5.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg4 {
-  background: url('../img/4.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg3 {
-  background: url('../img/3.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg2 {
-  background: url('../img/2.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg1 {
-  background: url('../img/1.jpg') no-repeat center center;
-  background-size: cover;
-}
-.swiper-container .bg0 {
-  background: url('../img/0.jpg') no-repeat center center;
-  background-size: cover;
-}
 .header {
   z-index: 1;
   height: 60px;
@@ -972,6 +986,15 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   margin: 20px auto;
   position: relative;
   height: calc(100% - 100px);
+}
+.main:after {
+  top: 50%;
+  left: 50%;
+  content: '静';
+  font-size: 240px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.6);
 }
 #clock {
   right: 0;

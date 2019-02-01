@@ -1,5 +1,8 @@
 # Linux
 
+## 2019/01/31: 系统清理
+  1. 查看当前目录各个文件占用空间大小: `du -h --max-depth=1`
+
 ## 用户操作
   - 查看所有组: `cat /etc/group`
   - 添加组: `groupadd [groupName]`

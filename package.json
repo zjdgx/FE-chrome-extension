@@ -4,8 +4,8 @@
   "description": "zjdgx chrome extension",
   "main": "build.js",
   "scripts": {
-    "build": "lessc src/static/less/newtab.less > src/static/css/newTab.min.css & babel-node build.js true",
-    "dev": "lessc src/static/less/newtab.less > src/static/css/newTab.min.css & babel-node build.js false",
+    "build": "babel-node build/index.js false",
+    "dev": "babel-node build/index.js false true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,10 +25,9 @@
   "homepage": "https://github.com/zjdgx/FE-chrome-extension#readme",
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
+    "chokidar": "^2.0.4",
     "less": "^3.9.0",
     "marked": "^0.6.0"
   },
-  "dependencies": {
-    "highlight.js": "^9.13.1"
-  }
+  "dependencies": {}
 }

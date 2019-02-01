@@ -2,7 +2,7 @@ let doc = document;
 let sort = {column: '', type: 'desc'}; // 2019/01/07: interview javascript sort
 let sourceData = [// 2019/01/07: interview javascript sort
   {a: '测试', b: 1, c: '001'},
-  {a: '百度', b: 9, c: '011'},
+  {a: '百度', b: 9, c: '008'},
   {a: '京东', b: 2, c: '009'}
 ];
 var canvas = document.querySelector('canvas');
@@ -196,7 +196,7 @@ $(() => {
       $cur.animate({
         height: 0
       }, 'fast', e => {
-        $cur.removeClass('active').css('height', 'auto');
+        $cur.removeClass('active').css('height', '100%');
         $cat.addClass('active');
       });
       if ($t.attr('data-target') === '#interview-js') {
@@ -293,39 +293,39 @@ $(() => {
   });
 
   // 2019/01/07: interview javascript sort
-  // doc.getElementById('interview-js').addEventListener('click', function (e) {
-  //   const $t = e.target;
-  //   const $p = $t.parentNode;
-  //   if ($t.nodeName === 'SPAN' && $p.nodeName === 'LI' && $p.className === 'head') {
-  //     const column = $t.className;
+  doc.getElementById('interview-js').addEventListener('click', function (e) {
+    const $t = e.target;
+    const $p = $t.parentNode;
+    if ($t.nodeName === 'SPAN' && $p.nodeName === 'LI' && $p.className === 'head') {
+      const column = $t.className;
 
-  //     if (sort.column === column) {
-  //       sort.type = sort.type == 'desc' ? 'asc' : 'desc';
-  //     } else {
-  //       sort = {
-  //         column,
-  //         type: 'desc'
-  //       };
-  //     }
+      if (sort.column === column) {
+        sort.type = sort.type == 'desc' ? 'asc' : 'desc';
+      } else {
+        sort = {
+          column,
+          type: 'desc'
+        };
+      }
 
-  //     sourceData.sort(function compare(a, b) {
-  //       if (sort.type == 'desc') {
-  //         if (a[column] < b[column])
-  //           return -1;
-  //         if (a[column] > b[column])
-  //           return 1;
-  //         return 0;
-  //       } else {
-  //         if (a[column] > b[column])
-  //           return -1;
-  //         if (a[column] < b[column])
-  //           return 1;
-  //         return 0;
-  //       }
-  //     });
-  //     showTable();
-  //   } else if ($t.id === 'interview-js') {
-  //     showTable();
-  //   }
-  // }, false);
+      sourceData.sort(function compare(a, b) {
+        if (sort.type == 'desc') {
+          if (a[column] < b[column])
+            return -1;
+          if (a[column] > b[column])
+            return 1;
+          return 0;
+        } else {
+          if (a[column] > b[column])
+            return -1;
+          if (a[column] < b[column])
+            return 1;
+          return 0;
+        }
+      });
+      showTable();
+    } else if ($t.id === 'interview-js') {
+      showTable();
+    }
+  }, false);
 });
