@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "build": "babel-node build/index.js false",
-    "dev": "babel-node build/index.js false true",
+    "dev": "babel-node build/index.js true true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
