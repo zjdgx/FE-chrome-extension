@@ -4,6 +4,10 @@ module.exports.categories = [
     active: true,
   },
   {
+    id: 'daily',
+    private: true
+  },
+  {
     id: 'study',
   },
   {

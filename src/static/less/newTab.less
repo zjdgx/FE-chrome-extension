@@ -857,8 +857,10 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   display: none;
 }
 .category .content-item.active {
+  z-index: 1;
   display: block;
   overflow-y: auto;
+  position: relative;
 }
 .category .content-item .sub-title {
   color: #fff;
@@ -869,6 +871,7 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   width: 200px;
   height: 100%;
   color: #fff;
+  overflow-y: auto;
   background-color: rgba(0, 153, 255, 0.4);
 }
 .tab-list .tab-item {
