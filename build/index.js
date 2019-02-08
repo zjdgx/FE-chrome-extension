@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar';
 // var less = require('less');
-import { categories } from '../src/config/category';
+import { tabList, activeTab } from '../src/config/config';
 import config from './config';
 import getMarkCompiledContent from './compile-markdown';
 import { buildTheme } from './build-theme-less';
@@ -155,6 +155,33 @@ function cleanFiles () {
   }
 }
 
+// add active class to tab
+function addActiveToTabContent () {
+  Object.keys(tabList).forEach((category) => {
+    var tab = fs.readFileSync(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`));
+
+    console.log(`category: ${category}`);
+    if (category === activeTab && !/class="category\sactive/.test(tab.toString ())) {
+      console.log(`category: ${category} build`);
+      tab = tab.toString().replace(/class="category/, 'class="category active');
+      fs.writeFile(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`), tab, function(err) {
+        if (err) {
+          return console.log(err);
+        } else {
+          console.log(`活动页面class替换完毕!`);
+        }
+      });  
+    } else if (/class="category\sactive/.test(tab.toString ())) {
+      tab = tab.toString().replace(/class="category\sactive/, 'class="category ');
+      fs.writeFile(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`), tab, function(err) {
+        if (err) {
+          return console.log(err);
+        }
+      });
+    }
+  });
+}
+  
 function build () {
   // build theme less
   buildTheme(isPrivate, config.showTheme, config.privatePhotoBg);
@@ -175,14 +202,17 @@ function build () {
       copyFolderRecursiveSync('./src/static', ['/less'], './dist');
     }
   });
+
+  // 添加active class
+  addActiveToTabContent();
   
   // build categories.html
   let firstLevelTabs = ['<div class="wrapper">'];
   let showTabs = [];
-  categories.forEach((category) => {
-    if (!(!isPrivate && category.private)) {
-      firstLevelTabs.push(`<span class="link${category.active ? ' active' : ''}" data-target="#${category.id}">${category.id[0].toUpperCase() + category.id.substring(1).toLowerCase()}</span>`)
-      showTabs.push(`\${include file="${tabFilePath + category.id + '.html'}"}`);
+  Object.keys(tabList).forEach((category) => {
+    if (!(!isPrivate && tabList[category].private)) {
+      firstLevelTabs.push(`<span class="link${category === activeTab ? ' active' : ''}" data-target="#${category}">${category[0].toUpperCase() + category.substring(1).toLowerCase()}</span>`)
+      showTabs.push(`\${include file="${tabFilePath + category + '.html'}"}`);
     }
   });
   firstLevelTabs.push('</div>');
