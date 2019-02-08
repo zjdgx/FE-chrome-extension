@@ -21,5 +21,5 @@ module.exports = {
     },
     child: {},
   },
-  activeTab: 'links'
+  activeTab: 'daily'
 };

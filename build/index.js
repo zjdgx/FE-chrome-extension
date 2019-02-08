@@ -20,10 +20,11 @@ const showTabsContentFile = './src/pages/content/showContent.html';
 const categoryFilePath = './src/pages/content/categories.html';
 const isPrivate = process.argv[2] === 'true'; // 是否私人模式
 const IS_DEV = process.argv[3] === 'true'; // 是否DEV模式
-const includeHtml = /\$\{include file=('|")\.*(\/[a-zA-Z0-9\-]+)+\.html('|")\}/gi;
-const includeMarkdown = /\$\{include file=('|")\.*(\/[a-zA-Z0-9\-\.]+)+\.md('|")\}/gi;
+const includeHtml = /\$\{include file=('|")\.*(\/[a-zA-Z0-9\-]+)+\.html('|")(\sprivate)?\}/gi;
+const includeMarkdown = /\$\{include file=('|")\.*(\/[a-zA-Z0-9\-\.]+)+\.md('|")(\sprivate)?\}/gi;
 const includeFileReg = /\.*(\/[a-zA-Z0-9\-]+)+\.html/gi;
 const includeMdReg = /\.*(\/[a-zA-Z0-9\-\.]+)+\.md/gi;
+const currentTab = tabList[activeTab].private && !isPrivate ? 'links' : activeTab; // 当前显示tab
 
 // 递归查找替换文件
 function searchReplaceFileSync(inputFile, isRootFile) {
@@ -34,27 +35,31 @@ function searchReplaceFileSync(inputFile, isRootFile) {
 
   if (matches && matches.length) {
     for (var i = 0; i < matches.length; i++) {
-      var includeFilePath = matches[i].match(includeFileReg);
-      var backNum = includeFilePath[0].match(/\.\./gi);
-      backNum = backNum ? backNum.length + 1 : 1;
-      var pathReg = new RegExp('(\/[a-zA-Z0-9\-]+){' + backNum + '}\.html', 'gi');
-      var target = inputFile.replace(pathReg, includeFilePath[0].replace(/^(\.\.?\/)*/, '/'));
-      // console.log(`=============\ninput file: ${inputFile}\nfile: ${includeFilePath[0]}\ntarget: ${target}\n=============`);
-      var reg = new RegExp('\\$\\{include file=(\'|")' + includeFilePath[0].replace(/\//g, '\/').replace(/\./g, '\\.').replace(/\-/g, '\\-') + '(\'|")\}', 'gi');
-      content = content.toString().replace(reg, searchReplaceFileSync(target, false));
+      if (matches[i].indexOf(' private') > -1 && isPrivate || matches[i].indexOf(' private') == -1) {
+        var includeFilePath = matches[i].match(includeFileReg);
+        var backNum = includeFilePath[0].match(/\.\./gi);
+        backNum = backNum ? backNum.length + 1 : 1;
+        var pathReg = new RegExp('(\/[a-zA-Z0-9\-]+){' + backNum + '}\.html', 'gi');
+        var target = inputFile.replace(pathReg, includeFilePath[0].replace(/^(\.\.?\/)*/, '/'));
+        // console.log(`=============\ninput file: ${inputFile}\nfile: ${includeFilePath[0]}\ntarget: ${target}\n=============`);
+        var reg = new RegExp('\\$\\{include file=(\'|")' + includeFilePath[0].replace(/\//g, '\/').replace(/\./g, '\\.').replace(/\-/g, '\\-') + '(\'|")(\sprivate)?\}', 'gi');
+        content = content.toString().replace(reg, searchReplaceFileSync(target, false));
+      }
     }
   }
 
   if (mdMatches && mdMatches.length) {
     for (var i = 0; i < mdMatches.length; i++) {
-      var includeMdFilePath = mdMatches[i].match(includeMdReg);
-      var backNum = includeMdFilePath[0].match(/\.\./gi);
-      backNum = backNum ? backNum.length + 1 : 1;
-      var pathReg = new RegExp('(\/[a-zA-Z0-9\-]+){' + backNum + '}\.html', 'gi');
-      var mdTarget = inputFile.replace(pathReg, includeMdFilePath[0].replace(/^(\.\.?\/)*/, '/'));
-      // console.log(`=============\ninput file: ${inputFile}\nfile: ${includeMdFilePath[0]}\ntarget: ${mdTarget}\n=============`);
-      var reg = new RegExp('\\$\\{include file=(\'|")' + includeMdFilePath[0].replace(/\//g, '\/').replace(/\./g, '\\.').replace(/\-/g, '\\-') + '(\'|")\}', 'gi');
-      content = content.toString().replace(reg, getMarkCompiledContent(mdTarget));
+      if (mdMatches[i].indexOf(' private') > -1 && isPrivate || mdMatches[i].indexOf(' private') == -1) {
+        var includeMdFilePath = mdMatches[i].match(includeMdReg);
+        var backNum = includeMdFilePath[0].match(/\.\./gi);
+        backNum = backNum ? backNum.length + 1 : 1;
+        var pathReg = new RegExp('(\/[a-zA-Z0-9\-]+){' + backNum + '}\.html', 'gi');
+        var mdTarget = inputFile.replace(pathReg, includeMdFilePath[0].replace(/^(\.\.?\/)*/, '/'));
+        // console.log(`=============\ninput file: ${inputFile}\nfile: ${includeMdFilePath[0]}\ntarget: ${mdTarget}\n=============`);
+        var reg = new RegExp('\\$\\{include file=(\'|")' + includeMdFilePath[0].replace(/\//g, '\/').replace(/\./g, '\\.').replace(/\-/g, '\\-') + '(\'|")(\\sprivate)?\}', 'gi');
+        content = content.toString().replace(reg, getMarkCompiledContent(mdTarget));
+      }
     }
   }
 
@@ -158,26 +163,26 @@ function cleanFiles () {
 // add active class to tab
 function addActiveToTabContent () {
   Object.keys(tabList).forEach((category) => {
-    var tab = fs.readFileSync(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`));
+    if (tabList[category].private && isPrivate || !tabList[category].private) {
+      var tab = fs.readFileSync(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`));
 
-    console.log(`category: ${category}`);
-    if (category === activeTab && !/class="category\sactive/.test(tab.toString ())) {
-      console.log(`category: ${category} build`);
-      tab = tab.toString().replace(/class="category/, 'class="category active');
-      fs.writeFile(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`), tab, function(err) {
-        if (err) {
-          return console.log(err);
-        } else {
-          console.log(`活动页面class替换完毕!`);
-        }
-      });  
-    } else if (/class="category\sactive/.test(tab.toString ())) {
-      tab = tab.toString().replace(/class="category\sactive/, 'class="category ');
-      fs.writeFile(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`), tab, function(err) {
-        if (err) {
-          return console.log(err);
-        }
-      });
+      if (category === currentTab && !/class="category\sactive/.test(tab.toString ())) {
+        tab = tab.toString().replace(/class="category/, 'class="category active');
+        fs.writeFile(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`), tab, function(err) {
+          if (err) {
+            return console.log(err);
+          } else {
+            console.log(`活动页面class替换完毕!`);
+          }
+        });  
+      } else if (category !== currentTab && /class="category\sactive/.test(tab.toString ())) {
+        tab = tab.toString().replace(/class="category\sactive/, 'class="category');
+        fs.writeFile(path.resolve(__dirname, `../src/pages/content/tab/${category}.html`), tab, function(err) {
+          if (err) {
+            return console.log(err);
+          }
+        });
+      }
     }
   });
 }
@@ -211,7 +216,7 @@ function build () {
   let showTabs = [];
   Object.keys(tabList).forEach((category) => {
     if (!(!isPrivate && tabList[category].private)) {
-      firstLevelTabs.push(`<span class="link${category === activeTab ? ' active' : ''}" data-target="#${category}">${category[0].toUpperCase() + category.substring(1).toLowerCase()}</span>`)
+      firstLevelTabs.push(`<span class="link${category === currentTab ? ' active' : ''}" data-target="#${category}">${category[0].toUpperCase() + category.substring(1).toLowerCase()}</span>`)
       showTabs.push(`\${include file="${tabFilePath + category + '.html'}"}`);
     }
   });
