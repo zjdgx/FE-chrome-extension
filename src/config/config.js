@@ -1,6 +1,10 @@
 module.exports = {
   tabList: {
     links: {},
+    work: {
+      private: true,
+      addDate: '2019/02/08'
+    },
     daily: {
       private: true,
       addDate: '2019/02/08'
@@ -21,5 +25,5 @@ module.exports = {
     },
     child: {},
   },
-  activeTab: 'daily'
+  activeTab: 'work'
 };

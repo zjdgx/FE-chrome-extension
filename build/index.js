@@ -14,6 +14,7 @@ import config from './config';
 import getMarkCompiledContent from './compile-markdown';
 import { buildTheme } from './build-theme-less';
 
+const ncp = require('ncp').ncp; // 复制文件目录插件
 const pagePath = './src/pages';
 const tabFilePath = './tab/';
 const showTabsContentFile = './src/pages/content/showContent.html';
@@ -139,7 +140,25 @@ function copyFolderRecursiveSync( source, excludeFiles, target ) {
   }
 }
 
+function deleteFolder(path) {
+	var files = [];
+	if(fs.existsSync(path)) {
+		files = fs.readdirSync(path);
+		files.forEach(function(file, index) {
+			var curPath = path + "/" + file;
+			if(fs.statSync(curPath).isDirectory()) { // recurse
+				deleteFolder(curPath);
+			} else { // delete file
+				fs.unlinkSync(curPath);
+			}
+		});
+		fs.rmdirSync(path);
+  }
+}
+
 function cleanFiles () {
+  deleteFolder(path.resolve(__dirname, '../dist/pages'));
+
   if (fs.existsSync(path.resolve(__dirname, showTabsContentFile))) {
     fs.unlink(path.resolve(__dirname, showTabsContentFile), (err) => {
       if (err) {
@@ -248,6 +267,19 @@ function build () {
       }
     });
   });
+
+  // copy local pages
+  // console.log(`__dirname: ${__dirname}`);
+  // copyFileSync(path.resolve(__dirname, '../src/pages/local'), path.resolve(__dirname, './dist/pages/'));
+  if (isPrivate) {
+    ncp.limit = 16;
+    ncp(path.resolve(__dirname, '../src/pages/local'), path.resolve(__dirname, '../dist/pages/local'), (err) => {
+      if (err) {
+        return console.error(err);
+      }
+      console.log('done!');
+    })
+  }
 }
 
 // fs.watch(path.resolve(__dirname, '/src'), build);

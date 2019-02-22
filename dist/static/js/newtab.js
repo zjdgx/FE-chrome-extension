@@ -191,6 +191,18 @@ $(() => {
         $cat = $($t.data('target')),
         $cur = $cat.siblings('.active');
 
+    if ($t[0].nodeName === 'LABEL') {
+      $t = $t.parent();
+    }
+
+    if (!$t.hasClass('active') && !$cat.length) {
+      const firstSubItem = $t.children().eq(1).children().eq(0).addClass('active');
+      firstSubItem.siblings().removeClass('active');
+      $cat = $(firstSubItem.data('target'));
+      $cur = $cat.siblings('.active');
+      firstSubItem
+    }
+
     if (!$t.hasClass('active')) {
       $t.addClass('active').siblings().removeClass('active');
       $cur.animate({

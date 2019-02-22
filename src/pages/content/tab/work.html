@@ -1,0 +1,19 @@
+<div class="category active new-tab-content" id="work">
+  <ul class="tab-list">
+    <li class="tab-item active has-sub-items" data-target="#dealmoon">
+      <label>Dealmoon</label>
+      <ul>
+        <li class="sub-item active" data-target="#dealmoon-stuff">资料</li>
+        <li class="sub-item" data-target="#dealmoon-nuxt">Nuxt开发文档</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="content-wrapper">
+    <div class="content-item active" id="dealmoon-stuff">
+      ${include file="../private/work/dealmoon/stuff.md" private}
+    </div>
+    <div class="content-item" id="dealmoon-nuxt">
+      ${include file="../private/work/dealmoon/nuxt-deploy.md" private}
+    </div>
+  </div>
+</div>

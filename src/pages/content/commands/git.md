@@ -21,7 +21,10 @@
 
 ### 2018/05/11 修改gitignore
 ```
-  git rm -r --cached .
+  git rm -r --cached .  #清除缓存  
+  git add . #重新trace file  
+  git commit -m "update .gitignore" #提交和注释  
+  git push origin master #可选，如果需要同步到remote上的话  
 ```
 
 ### 2018/04/20

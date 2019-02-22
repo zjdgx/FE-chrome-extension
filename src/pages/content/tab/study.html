@@ -1,10 +1,23 @@
 <div class="category  new-tab-content" id="study">
   <ul class="tab-list">
     <li class="tab-item active" data-target="#daily-2019">2019学习</li>
+    <li class="tab-item has-sub-items">
+      <label>VUE</label>
+      <ul>
+        <li class="sub-item" data-target="#vue-filter">Filter</li>
+        <li class="sub-item" data-target="#vue-directive">Directive</li>
+      </ul>
+    </li>
   </ul>
   <div class="content-wrapper">
     <div class="content-item active markdown" id="daily-2019">
       ${include file="../private/study/daily.2019.md" private}
+    </div>
+    <div class="content-item markdown" id="vue-filter" date="2019/02/11">
+      ${include file="../framework/vue/filter.md"}
+    </div>
+    <div class="content-item markdown" id="vue-directive" date="2019/02/11">
+      ${include file="../framework/vue/directive.md"}
     </div>
   </div>
 </div>

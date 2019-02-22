@@ -27,7 +27,9 @@
     "babel-preset-env": "^1.7.0",
     "chokidar": "^2.0.4",
     "less": "^3.9.0",
-    "marked": "^0.6.0"
+    "marked": "^0.6.0",
+    "ncp": "^2.0.0",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {}
 }

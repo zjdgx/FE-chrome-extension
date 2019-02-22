@@ -70,6 +70,12 @@ input {
   line-height: 25px;
   border-radius: 4px;
   border: 1px solid #0099ff;
+  &[type="checkbox"] {
+    padding: 0;
+    height: auto;
+    line-height: 1em;
+    vertical-align: middle;
+  }
 }
 input:focus {
   outline: none;
@@ -881,6 +887,26 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   font-size: 12px;
   line-height: 30px;
   border-bottom: 1px solid #fff;
+  &.has-sub-items {
+    padding: 0;
+    overflow: hidden;
+    &.active {
+      height: auto;
+      overflow: auto;
+    }
+    label {
+      cursor: pointer;
+      padding: 0 10px;
+    }
+    .sub-item {
+      text-indent: 20px;
+      border-top: 1px solid #fff;
+      &.active {
+        font-size: 14px;
+        background: rgba(100, 153, 255, 0.8);
+      }
+    }
+  }
 }
 .tab-list .tab-item:last-of-type {
   border-bottom: none;
@@ -971,10 +997,13 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   color: #fff;
   padding: 0 10px;
   font-size: 12px;
+  overflow: hidden;
   line-height: 26px;
+  white-space: nowrap;
   display: inline-block;
   text-decoration: none;
   vertical-align: middle;
+  text-overflow: ellipsis;
   background-color: rgba(0, 153, 255, 0.8);
 }
 .link-item a:link,
